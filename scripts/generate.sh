@@ -11,7 +11,8 @@ if [ ! -e $RUBY_VERSION_NUM ] ; then
     ./configure && \
     make -j4 && \
     make install && \
-    ruby -v"
+    ruby -v && \
+    gem install compass"
 fi
 
 if [ ! -e $NODE_VERSION_NUM ] ; then
@@ -23,7 +24,8 @@ if [ ! -e $NODE_VERSION_NUM ] ; then
     make -j4 && \
     make install && \
     cd .. && \
-    rm -r node-v$NODE_VERSION_NUM"
+    rm -r node-v$NODE_VERSION_NUM && \
+    npm i -g bower"
 fi
 
 if [ ! -e $PYTHON_VERSION_NUM ] ; then
