@@ -25,7 +25,8 @@ if [ ! -e $NODE_VERSION_NUM ] ; then
     make install && \
     cd .. && \
     rm -r node-v$NODE_VERSION_NUM"
-	echo "RUN /bin/sh -c \"npm install --global bower\""
+	echo "RUN npm rebuild"
+	echo "RUN npm install --global bower"
 fi
 
 if [ ! -e $PYTHON_VERSION_NUM ] ; then
