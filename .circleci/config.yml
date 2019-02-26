@@ -34,7 +34,9 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      enabled: true
+      cmd: ["/bin/bash"]
     environment:
       <<: *image_config
 
