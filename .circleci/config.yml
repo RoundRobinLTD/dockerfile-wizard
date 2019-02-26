@@ -1,3 +1,10 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+
+  services:
+    - docker
+    
 image_config: &image_config
 
   # make sure to set your Docker Hub username & password in CircleCI,
@@ -34,9 +41,7 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    machine:
-      enabled: true
-      cmd: ["/bin/bash"]
+    machine: true
     environment:
       <<: *image_config
 
