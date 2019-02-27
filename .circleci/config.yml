@@ -49,43 +49,17 @@ jobs:
       - checkout
 
       - run: bash scripts/generate.sh > Dockerfile
+      
+      - run: echo Dockerfile
 
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      #- run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+      #- run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
 
-      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+      #- run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
-      - store_artifacts:
-          path: Dockerfile
-
-  test_image:
-    docker:
-      - image: $DOCKER_USERNAME/scrnz:latest
-        environment:
-          <<: *image_config
-
-    steps:
-      - checkout
-
-      - run:
-          name: start Xvfb for phantomjs test
-          # command: Xvfb :99
-          # background: true
-
-      - run:
-          name: bats tests
-          command: |
-            mkdir -p test_results/bats
-            bats scripts/tests.bats | \
-            perl scripts/tap-to-junit.sh > \
-            test_results/bats/results.xml
-
-      - store_test_results:
-          path: test_results
-
-      - store_artifacts:
-          path: test_results
+      #- store_artifacts:
+       #   path: Dockerfile
 
 workflows:
   version: 2
