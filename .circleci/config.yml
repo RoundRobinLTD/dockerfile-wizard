@@ -67,8 +67,3 @@ workflows:
     jobs:
       - build:
           context: org-global
-
-      - test_image:
-          context: org-global
-          requires:
-            - build
